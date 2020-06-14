@@ -26,7 +26,7 @@ Take a look at how SilverCheetah tackles the problem here:
 5. CFR accesses the Smart Strong Box using the OTP and attends to the alert sender. 
 
 ## Detailed Solution
-Take a look at our solution details here: 
+Take a look at our solution details here: [Detailed Solution](https://github.com/madhumitha998/StarTech-SilverCheetah_SCDFXIBM/blob/master/Detailed%20Solution.pdf)
 
 ## Getting Started
 ### Step 1: Create an IoT app in the IBM Cloud
