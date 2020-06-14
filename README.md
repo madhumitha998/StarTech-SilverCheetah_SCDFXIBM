@@ -48,7 +48,7 @@ Instead of adding the additional packages via Manage Palette, use the IBM Cloud 
 ### Step 5: Import and deploy the SilverCheetah flow
 1. Import the [SilverCheetah](https://developer.ibm.com/tutorials/create-a-voice-enabled-covid-19-chatbot-using-node-red/) flow here. 
 ![SilverCheetah Flow](https://github.com/madhumitha998/StarTech-SilverCheetah_SCDFXIBM/blob/master/Images/Node%20RED%20flow.png)
-2. Make the following changes
+2. Make the following changes <br/>
 | First Header  | Second Header | Third Header 	|
 | ------------- | ------------- | ------------ 	|
 | Content Cell  | Content Cell  |	Content Cell  |
