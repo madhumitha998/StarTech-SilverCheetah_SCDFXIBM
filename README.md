@@ -26,7 +26,7 @@ Take a look at how SilverCheetah tackles the problem here:
 5. CFR accesses the Smart Strong Box using the OTP and attends to the alert sender. 
 
 ## Detailed Solution
-Take a look at our solution details here: 
+Take a look at our solution details here: [Detailed Solution.pdf]
 
 ## Getting Started
 ### Step 1: Create an IoT app in the IBM Cloud
@@ -48,11 +48,7 @@ Instead of adding the additional packages via Manage Palette, use the IBM Cloud 
 ### Step 5: Import and deploy the SilverCheetah flow
 1. Import the [SilverCheetah](https://developer.ibm.com/tutorials/create-a-voice-enabled-covid-19-chatbot-using-node-red/) flow here. 
 ![SilverCheetah Flow](https://github.com/madhumitha998/StarTech-SilverCheetah_SCDFXIBM/blob/master/Images/Node%20RED%20flow.png)
-2. Make the following changes <br/>
-First Header | Second Header
------------- | -------------
-Content from cell 1 | Content from cell 2
-Content in the first column | Content in the second column
+2. Make the following changes 
 
 ## IBM Services Used 
 SilverCheetah uses a variety of IBM services. These include **IoT Platform**, **Cloudant** and **Node-RED**. These tools enable a device to publish its data to the cloud, which our team stores in a database and utilises it to send an alert and data to CFR and SCDF. CFR receives the data in the myResponder Mobile App and SCDF is able to view the data in a dashboard. 
