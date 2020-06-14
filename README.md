@@ -49,11 +49,10 @@ Instead of adding the additional packages via Manage Palette, use the IBM Cloud 
 1. Import the [SilverCheetah](https://developer.ibm.com/tutorials/create-a-voice-enabled-covid-19-chatbot-using-node-red/) flow here. 
 ![SilverCheetah Flow](https://github.com/madhumitha998/StarTech-SilverCheetah_SCDFXIBM/blob/master/Images/Node%20RED%20flow.png)
 2. Make the following changes
-|   	|   	|   	|   	|   	|
-|---	|---	|---	|---	|---	|
-|   	|   	|   	|   	|   	|
-|   	|   	|   	|   	|   	|
-|   	|   	|   	|   	|   	|
+| First Header  | Second Header | Third Header 	|
+| ------------- | ------------- | ------------ 	|
+| Content Cell  | Content Cell  |	Content Cell  |
+| Content Cell  | Content Cell  |	Content Cell  |
 
 ## IBM Services Used 
 SilverCheetah uses a variety of IBM services. These include **IoT Platform**, **Cloudant** and **Node-RED**. These tools enable a device to publish its data to the cloud, which our team stores in a database and utilises it to send an alert and data to CFR and SCDF. CFR receives the data in the myResponder Mobile App and SCDF is able to view the data in a dashboard. 
