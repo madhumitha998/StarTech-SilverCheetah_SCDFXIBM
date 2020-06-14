@@ -37,7 +37,7 @@ Take a look at our solution details here: [Detailed Solution](https://github.com
 
 ## Getting Started
 ### Step 1: Create an IoT app in the IBM Cloud
-Work through the steps in this tutorial to [create a Node-RED and Watson IoT Platform starter app in IBM Cloud](https://developer.ibm.com/tutorials/how-to-create-an-internet-of-things-platform-starter-application/). As a result, you will have a Node-RED Starter Kit application connected to the IBM IoT platform.
+Walk through the steps in this tutorial to [create a Node-RED and Watson IoT Platform starter app in IBM Cloud](https://developer.ibm.com/tutorials/how-to-create-an-internet-of-things-platform-starter-application/). As a result, you will have a Node-RED Starter Kit application connected to the IBM IoT platform.
 ### Step 2: Set-up an IoT Device
 Refer to step 2 to 4 in this [guide](https://developer.ibm.com/tutorials/create-a-voice-enabled-covid-19-chatbot-using-node-red/). 
 ### Step 3: Install Node-RED dependencies nodes
@@ -49,11 +49,12 @@ Instead of adding the additional packages via Manage Palette, use the IBM Cloud 
 "Node-red-contrib-scx-ibmiotapp":"0.x",
 "node-red-node-cf-cloudant":"0.x"
 ```
-### Step 4: Install Node-RED dependencies nodes
-1. Import the "insert_user_data.json" flow. Note: The users data are not real. It is utilised  to demonstrate our idea.
-2. Remember to check the operation is insert and tick “only store msg.payload.object”.
-3. At the top right corner, click "Deploy" to save any changes. 
-4. Click the box next to the "Insert data" node to inject the data. 
+### Step 4: Insertion of the data into cloudant
+1. There is a comment node indicating the flow of inserting data
+2. Remember to check the operation is "insert" and tick “only store msg.payload.object”.
+2. At the top right corner, click "Deploy" to save any changes. 
+3. Click the box next to the "Insert data" node to inject the data. 
+
 ### Step 5: Import and deploy the SilverCheetah flow
 1. Import the [SilverCheetah](https://github.com/madhumitha998/StarTech-SilverCheetah_SCDFXIBM/blob/master/Scripts/SilverCheetah_flow.json) flow here. 
 ![SilverCheetah Flow](https://github.com/madhumitha998/StarTech-SilverCheetah_SCDFXIBM/blob/master/Images/Node%20RED%20flow.png)
