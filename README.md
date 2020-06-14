@@ -59,8 +59,11 @@ Instead of adding the additional packages via Manage Palette, use the IBM Cloud 
 1. Import the [SilverCheetah](https://github.com/madhumitha998/StarTech-SilverCheetah_SCDFXIBM/blob/master/Scripts/SilverCheetah_flow.json) flow here. 
 ![SilverCheetah Flow](https://github.com/madhumitha998/StarTech-SilverCheetah_SCDFXIBM/blob/master/Images/Node%20RED%20flow.png)
 2. Make the following changes
-![IBM IOT](https://github.com/madhumitha998/StarTech-SilverCheetah_SCDFXIBM/blob/master/Images/ibm_iot.JPG)
-![My respondent](https://github.com/madhumitha998/StarTech-SilverCheetah_SCDFXIBM/blob/master/Images/myresp.JPG)
+![IBM IOT node](https://github.com/madhumitha998/StarTech-SilverCheetah_SCDFXIBM/blob/master/Images/ibm_iot.JPG)
+![My respondent node](https://github.com/madhumitha998/StarTech-SilverCheetah_SCDFXIBM/blob/master/Images/myresp.JPG)
+![HTTP response node](https://github.com/madhumitha998/StarTech-SilverCheetah_SCDFXIBM/blob/master/Images/http.JPG)
+![Insert](https://github.com/madhumitha998/StarTech-SilverCheetah_SCDFXIBM/blob/master/Images/insert.JPG)
+
 ## IBM Services Used 
 SilverCheetah uses a variety of IBM services. These include [IoT Platform](https://cloud.ibm.com/catalog?search=internet%20of%20things%20platform#search_results), [Cloudant](https://cloud.ibm.com/catalog?search=cloudant#search_results) and [Node-RED](https://cloud.ibm.com/catalog?search=node%20red%20app#search_results ). These tools enable a device to publish its data to the cloud, which our team stores in a database and utilises it to send an alert and data to CFR and SCDF. CFR receives the data in the myResponder Mobile App and SCDF is able to view the data in a dashboard. 
 
