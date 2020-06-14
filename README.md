@@ -36,10 +36,10 @@ Refer to step 2 to 4 in this [guide](https://developer.ibm.com/tutorials/create-
 ### Step 3: Install Node-RED dependencies nodes
 Instead of adding the additional packages via Manage Palette, use the IBM Cloud Toolchain and the git repository in IBM Cloud to add the following packages to the package.json. Commit the change and the CI/CD toolchain will restage the CF application.
 
-⋅⋅*"node-red-dashboard":"2.x",
-⋅⋅*"node-red-node-ui-table":"0.x",
-⋅⋅*"Node-red-contrib-scx-ibmiotapp":"0.x",
-⋅⋅*"node-red-node-cf-cloudant":"0.x"
+* "node-red-dashboard":"2.x",
+* "node-red-node-ui-table":"0.x",
+* "Node-red-contrib-scx-ibmiotapp":"0.x",
+* "node-red-node-cf-cloudant":"0.x"
 ### Step 4: Install Node-RED dependencies nodes
 1. Import the "insert_user_data.json" flow. Note: The users data are not real. It is utilised  to demonstrate our idea.
 2. Remember to check the operation is insert and tick “only store msg.payload.object”.
