@@ -17,7 +17,7 @@ Throughout this process, SCDF is able to conveniently monitor the victim’s vit
 Take a look at how SilverCheetah tackles the problem here: 
 
 ## Solution Architecture 
-![Solution Architecture](https://octodex.github.com/images/yaktocat.png)
+![Solution Architecture](https://github.com/madhumitha998/StarTech-SilverCheetah_SCDFXIBM/blob/master/Images/Architecture%20diagram.jpg)
 
 1. Wearable IoT Device detects an accident and sends data to the IBM IoT Platform
 2. The data is stored in the Cloudant Database. 
@@ -26,6 +26,7 @@ Take a look at how SilverCheetah tackles the problem here:
 5. CFR accesses the Smart Strong Box using the OTP and attends to the alert sender. 
 
 ## Detailed Solution
+Take a look at our solution details here: 
 
 ## Getting Started
 ### Step 1: Create an IoT app in the IBM Cloud
@@ -35,10 +36,10 @@ Refer to step 2 to 4 in this [guide](https://developer.ibm.com/tutorials/create-
 ### Step 3: Install Node-RED dependencies nodes
 Instead of adding the additional packages via Manage Palette, use the IBM Cloud Toolchain and the git repository in IBM Cloud to add the following packages to the package.json. Commit the change and the CI/CD toolchain will restage the CF application.
 
-"node-red-dashboard":"2.x",
-"node-red-node-ui-table":"0.x",
-"Node-red-contrib-scx-ibmiotapp":"0.x",
-"node-red-node-cf-cloudant":"0.x"
+⋅⋅*"node-red-dashboard":"2.x",
+⋅⋅*"node-red-node-ui-table":"0.x",
+⋅⋅*"Node-red-contrib-scx-ibmiotapp":"0.x",
+⋅⋅*"node-red-node-cf-cloudant":"0.x"
 ### Step 4: Install Node-RED dependencies nodes
 1. Import the "insert_user_data.json" flow. Note: The users data are not real. It is utilised  to demonstrate our idea.
 2. Remember to check the operation is insert and tick “only store msg.payload.object”.
@@ -46,7 +47,7 @@ Instead of adding the additional packages via Manage Palette, use the IBM Cloud 
 4. Click the box next to the "Insert data" node to inject the data. 
 ### Step 5: Import and deploy the SilverCheetah flow
 1. Import the [SilverCheetah](https://developer.ibm.com/tutorials/create-a-voice-enabled-covid-19-chatbot-using-node-red/) flow here. 
-![SilverCheetah Flow](https://octodex.github.com/images/yaktocat.png)
+![SilverCheetah Flow](https://github.com/madhumitha998/StarTech-SilverCheetah_SCDFXIBM/blob/master/Images/Node%20RED%20flow.png)
 2. Make the following changes
 | Node                    | Picture       | Explanation|
 | ------------------------|:-------------:| ----------:|
