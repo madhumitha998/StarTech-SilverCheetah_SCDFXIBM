@@ -21,7 +21,7 @@ Our solution includes a **wearable IoT device** and a **Smart Strong Box**. The 
 Throughout this process, SCDF is able to conveniently monitor the victim’s vital signs through the IoT device as well as the situational update through a dashboard in real-time.
 
 ## Pitch Video 
-Take a look at how SilverCheetah tackles the problem here: 
+Take a look at how SilverCheetah tackles the problem here: https://youtu.be/B3AueijOSbE
 
 ## Solution Architecture 
 ![Solution Architecture](https://github.com/madhumitha998/StarTech-SilverCheetah_SCDFXIBM/blob/master/Images/Architecture%20diagram.jpg)
@@ -57,7 +57,7 @@ Instead of adding the additional packages via Manage Palette, use the IBM Cloud 
 
 ### Step 5: Import and deploy the SilverCheetah flow
 1. Import the [SilverCheetah](https://github.com/madhumitha998/StarTech-SilverCheetah_SCDFXIBM/blob/master/Scripts/SilverCheetah_flow.json) flow here. 
-![SilverCheetah Flow](https://github.com/madhumitha998/StarTech-SilverCheetah_SCDFXIBM/blob/master/Images/Node%20RED%20flow.png)
+![SilverCheetah Flow](https://github.com/madhumitha998/StarTech-SilverCheetah_SCDFXIBM/blob/master/Images/flow.jpg)
 2. Make the following changes
 ![IBM IOT node](https://github.com/madhumitha998/StarTech-SilverCheetah_SCDFXIBM/blob/master/Images/ibm_iot.JPG)
 ![My respondent node](https://github.com/madhumitha998/StarTech-SilverCheetah_SCDFXIBM/blob/master/Images/myresp.JPG)
@@ -65,6 +65,10 @@ Instead of adding the additional packages via Manage Palette, use the IBM Cloud 
 ![Insert](https://github.com/madhumitha998/StarTech-SilverCheetah_SCDFXIBM/blob/master/Images/insert.JPG)
 
 ## IBM Services Used 
-SilverCheetah uses a variety of IBM services. These include [IoT Platform](https://cloud.ibm.com/catalog?search=internet%20of%20things%20platform#search_results), [Cloudant](https://cloud.ibm.com/catalog?search=cloudant#search_results) and [Node-RED](https://cloud.ibm.com/catalog?search=node%20red%20app#search_results ). These tools enable a device to publish its data to the cloud, which our team stores in a database and utilises it to send an alert and data to CFR and SCDF. CFR receives the data in the myResponder Mobile App and SCDF is able to view the data in a dashboard. 
+SilverCheetah uses a variety of IBM services. These include [IoT Platform](https://cloud.ibm.com/catalog?search=internet%20of%20things%20platform#search_results), [Cloudant](https://cloud.ibm.com/catalog?search=cloudant#search_results) and [Node-RED](https://cloud.ibm.com/catalog?search=node%20red%20app#search_results ). These tools enable a device to publish its data to the cloud, which our team stores in a database and utilises it to send an alert and data to CFR and SCDF. CFR receives the data in the myResponder Mobile App and SCDF is able to view the data in a dashboard.
+
+![dashboard 1](https://github.com/madhumitha998/StarTech-SilverCheetah_SCDFXIBM/blob/master/Images/cloudant%20dashboard.png) 
 
 Alternatively, we can also store the data published by the device in a relational database, which can be visualised using [Watson Studio](https://cloud.ibm.com/catalog?search=watson%20studio#search_results). Our team has created an additional dashboard to illustrate this point. 
+
+![dashboard 2](https://github.com/madhumitha998/StarTech-SilverCheetah_SCDFXIBM/blob/master/Images/WS%20dashboard.jpg)
