@@ -6,8 +6,7 @@ Hi all! We are **StarTech**! Our team comprises of 5 members:
   * Shawbin
   * Madhu
   * Nixon
-  * Ronald. 
- 
+  * Ronald 
 Although some of us have not met each other in real life, we are glad to have participated in this hackathon. 
 Despite spending countless hours and burning midnight oils on our idea, we believe it will be an unforgettable experience we will surely cherish!
 
