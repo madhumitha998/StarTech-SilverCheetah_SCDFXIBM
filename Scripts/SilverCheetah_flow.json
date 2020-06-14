@@ -1,0 +1,770 @@
+[
+    {
+        "id": "87e375c9.041c18",
+        "type": "tab",
+        "label": "SilverCheetah",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "ae0a792e.ed7558",
+        "type": "ibmiot in",
+        "z": "87e375c9.041c18",
+        "authentication": "apiKey",
+        "apiKey": "773f0252.3b61ec",
+        "inputType": "evt",
+        "logicalInterface": "",
+        "ruleId": "",
+        "deviceId": "87654321",
+        "applicationId": "",
+        "deviceType": "",
+        "eventType": "accel",
+        "commandType": "",
+        "format": "json",
+        "name": "IBM IoT App In",
+        "service": "registered",
+        "allDevices": true,
+        "allApplications": "",
+        "allDeviceTypes": true,
+        "allLogicalInterfaces": false,
+        "allEvents": "",
+        "allCommands": "",
+        "allFormats": "",
+        "qos": "0",
+        "x": 140,
+        "y": 100,
+        "wires": [
+            [
+                "a124d914.677c08"
+            ]
+        ]
+    },
+    {
+        "id": "5bd6fd0d.5a0934",
+        "type": "function",
+        "z": "87e375c9.041c18",
+        "name": "Heart Rate",
+        "func": "// Array of pseudo random temperatures\nvar heart_rate = [60,62,68,72,82,96,111,119,131,162,180,196,232,251,264,262];\n\n// Counter to select from array.\nvar counter1 = context.get('counter1')||0;\ncounter1 = counter1+1;\nif(counter1 > 14) counter1 = 0;\ncontext.set('counter1',counter1);\n\n// Create MQTT message in JSON\nmsg = {\n payload: JSON.stringify(\n {\n \"heart_rate\" : heart_rate[counter1] }\n )\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 330,
+        "y": 160,
+        "wires": [
+            [
+                "f07fbcc9.d4b93"
+            ]
+        ]
+    },
+    {
+        "id": "151d32d0.5ee57d",
+        "type": "debug",
+        "z": "87e375c9.041c18",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1070,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "3e4f5822.e087b8",
+        "type": "json",
+        "z": "87e375c9.041c18",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 510,
+        "y": 220,
+        "wires": [
+            [
+                "edd2ef99.183be"
+            ]
+        ]
+    },
+    {
+        "id": "3d483776.773ce8",
+        "type": "inject",
+        "z": "87e375c9.041c18",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 150,
+        "y": 220,
+        "wires": [
+            [
+                "f2315fda.73172",
+                "5bd6fd0d.5a0934"
+            ]
+        ]
+    },
+    {
+        "id": "f2315fda.73172",
+        "type": "function",
+        "z": "87e375c9.041c18",
+        "name": "Device Id",
+        "func": "\n// Create MQTT message in JSON\nmsg = {\n payload: JSON.stringify(\n {\n //d:{\n \"device_id\" : 123456 }\n //\"humidity\" : humidity1[counter1] }\n //}\n )\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 320,
+        "y": 220,
+        "wires": [
+            [
+                "3e4f5822.e087b8"
+            ]
+        ]
+    },
+    {
+        "id": "f07fbcc9.d4b93",
+        "type": "json",
+        "z": "87e375c9.041c18",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 510,
+        "y": 160,
+        "wires": [
+            [
+                "edd2ef99.183be"
+            ]
+        ]
+    },
+    {
+        "id": "edd2ef99.183be",
+        "type": "join",
+        "z": "87e375c9.041c18",
+        "name": "",
+        "mode": "custom",
+        "build": "merged",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "4",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 690,
+        "y": 160,
+        "wires": [
+            [
+                "92c8440.2d1eec"
+            ]
+        ]
+    },
+    {
+        "id": "a124d914.677c08",
+        "type": "function",
+        "z": "87e375c9.041c18",
+        "name": "Acceleration Data",
+        "func": "var z = msg.payload.d.acceleration_z;\nvar y = msg.payload.d.acceleration_y;\nvar x = msg.payload.d.acceleration_x;\nvar t = msg.payload.d.timestamp;\n\nmsg.payload = JSON.stringify({\"accel_x\":x,\"accel_y\":y,\"accel_z\":z, \"timestamp\":t});\n\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 350,
+        "y": 100,
+        "wires": [
+            [
+                "e6824bc3.9804e8"
+            ]
+        ]
+    },
+    {
+        "id": "e6824bc3.9804e8",
+        "type": "json",
+        "z": "87e375c9.041c18",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 510,
+        "y": 100,
+        "wires": [
+            [
+                "edd2ef99.183be"
+            ]
+        ]
+    },
+    {
+        "id": "d0da469d.323dc8",
+        "type": "cloudant out",
+        "z": "87e375c9.041c18",
+        "name": "wearables_data",
+        "cloudant": "e1e4f51b.dca6a8",
+        "database": "wearables_data",
+        "service": "_ext_",
+        "payonly": true,
+        "operation": "insert",
+        "x": 1080,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "92c8440.2d1eec",
+        "type": "function",
+        "z": "87e375c9.041c18",
+        "name": "check status",
+        "func": "var status = \"pending\";\n\nif(msg.payload.accel_y<0){\n    status= \"fall\";\n} \n\nif(msg.payload.heart_rate>120){\n    status=\"cardiac arrest\";\n}\n\nmsg = {\n payload: JSON.stringify({\n \"type_of_accident\":status,\n \"heart_rate\":msg.payload.heart_rate, \n \"device_id\":msg.payload.device_id,\n \"timestamp\":msg.payload.timestamp,\n \"vertical_position\":msg.payload.accel_y\n })\n}\n\nif(status!=\"pending\"){\n    return msg;\n}\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 710,
+        "y": 220,
+        "wires": [
+            [
+                "e325c21e.bd9b1"
+            ]
+        ]
+    },
+    {
+        "id": "e325c21e.bd9b1",
+        "type": "json",
+        "z": "87e375c9.041c18",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 890,
+        "y": 220,
+        "wires": [
+            [
+                "d0da469d.323dc8",
+                "151d32d0.5ee57d",
+                "9dc8104.bcd37f",
+                "ce617a99.cb0d08",
+                "789a72d5.da5e9c",
+                "edb2f5f8.133368"
+            ]
+        ]
+    },
+    {
+        "id": "16bbce1.b236432",
+        "type": "cloudant in",
+        "z": "87e375c9.041c18",
+        "name": "",
+        "cloudant": "e1e4f51b.dca6a8",
+        "database": "users",
+        "service": "_ext_",
+        "search": "_all_",
+        "design": "",
+        "index": "",
+        "x": 390,
+        "y": 680,
+        "wires": [
+            [
+                "e8f1d03.f61873"
+            ]
+        ]
+    },
+    {
+        "id": "e8f1d03.f61873",
+        "type": "ui_table",
+        "z": "87e375c9.041c18",
+        "group": "556a0173.bfa9e",
+        "name": "Accident Details",
+        "order": 1,
+        "width": 21,
+        "height": 5,
+        "columns": [
+            {
+                "field": "device_id",
+                "title": "Device ID",
+                "width": "100",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "name",
+                "title": "Device Owner",
+                "width": "150",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "age",
+                "title": "Age",
+                "width": "75",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "address",
+                "title": "Address",
+                "width": "450",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "responder_personnel",
+                "title": "MyResponder Personnel",
+                "width": "200",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "Mobile",
+                "title": "Mobile",
+                "width": "100",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 0,
+        "cts": false,
+        "x": 580,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "7ba010cf.e670a",
+        "type": "inject",
+        "z": "87e375c9.041c18",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 190,
+        "y": 680,
+        "wires": [
+            [
+                "16bbce1.b236432"
+            ]
+        ]
+    },
+    {
+        "id": "ce617a99.cb0d08",
+        "type": "ui_text",
+        "z": "87e375c9.041c18",
+        "group": "12734b7c.b61a95",
+        "order": 2,
+        "width": "6",
+        "height": "5",
+        "name": "Type of Accident",
+        "label": "Type of Accident:",
+        "format": "{{msg.payload.type_of_accident}}",
+        "layout": "col-center",
+        "x": 1080,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "9dc8104.bcd37f",
+        "type": "ui_gauge",
+        "z": "87e375c9.041c18",
+        "name": "Vertical position",
+        "group": "dd19457a.884358",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Vertical Position",
+        "label": "ms^-2",
+        "format": "{{msg.payload.vertical_position}}",
+        "min": "0",
+        "max": "10",
+        "colors": [
+            "#ca3838",
+            "#e6e600",
+            "#00b500"
+        ],
+        "seg1": "3",
+        "seg2": "6",
+        "x": 1080,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "fde507fc.bf09f8",
+        "type": "http request",
+        "z": "87e375c9.041c18",
+        "name": "",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": false,
+        "url": "https://d4feb888-e2b9-445f-9403-7882c44dadfd-bluemix.cloudant.com/users/_find",
+        "tls": "",
+        "persist": true,
+        "proxy": "",
+        "authType": "basic",
+        "x": 350,
+        "y": 360,
+        "wires": [
+            [
+                "5f2fb455.5516cc"
+            ]
+        ]
+    },
+    {
+        "id": "77d0fb36.3c24e4",
+        "type": "debug",
+        "z": "87e375c9.041c18",
+        "name": "myResponder Mobile App",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1110,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "789a72d5.da5e9c",
+        "type": "function",
+        "z": "87e375c9.041c18",
+        "name": "Queries Device ID ",
+        "func": "msg.payload=\n{\n   \"selector\": {\n      \"device_id\": msg.payload.device_id\n   }\n};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 150,
+        "y": 360,
+        "wires": [
+            [
+                "fde507fc.bf09f8"
+            ]
+        ]
+    },
+    {
+        "id": "5f2fb455.5516cc",
+        "type": "function",
+        "z": "87e375c9.041c18",
+        "name": "Details to be sent to CFR",
+        "func": "\nmsg = {\n payload: JSON.stringify({\n \"MyResponderPersonnel\":msg.payload.docs[0].responder_personnel,\n \"Name\":msg.payload.docs[0].name,\n \"Address\":msg.payload.docs[0].address\n })\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 570,
+        "y": 360,
+        "wires": [
+            [
+                "bb6e6e18.e8c92"
+            ]
+        ]
+    },
+    {
+        "id": "bb6e6e18.e8c92",
+        "type": "json",
+        "z": "87e375c9.041c18",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 770,
+        "y": 360,
+        "wires": [
+            [
+                "40d83dd6.a4feb4"
+            ]
+        ]
+    },
+    {
+        "id": "2738dc2a.d9a5b4",
+        "type": "inject",
+        "z": "87e375c9.041c18",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "300",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 350,
+        "y": 440,
+        "wires": [
+            [
+                "7dd53044.1bf1c"
+            ]
+        ]
+    },
+    {
+        "id": "7dd53044.1bf1c",
+        "type": "function",
+        "z": "87e375c9.041c18",
+        "name": "OTP Generator",
+        "func": "rnd = Math.floor((Math.random() * 1000000) + 1);\n\nmsg = {\npayload: JSON.stringify({\n\"OTP\": rnd\n})\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 600,
+        "y": 440,
+        "wires": [
+            [
+                "99210d7d.6ef44"
+            ]
+        ]
+    },
+    {
+        "id": "40d83dd6.a4feb4",
+        "type": "join",
+        "z": "87e375c9.041c18",
+        "name": "",
+        "mode": "custom",
+        "build": "merged",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "2",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 910,
+        "y": 400,
+        "wires": [
+            [
+                "77d0fb36.3c24e4"
+            ]
+        ]
+    },
+    {
+        "id": "99210d7d.6ef44",
+        "type": "json",
+        "z": "87e375c9.041c18",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 770,
+        "y": 440,
+        "wires": [
+            [
+                "40d83dd6.a4feb4"
+            ]
+        ]
+    },
+    {
+        "id": "edb2f5f8.133368",
+        "type": "ui_gauge",
+        "z": "87e375c9.041c18",
+        "name": "",
+        "group": "991c2ba3.8002e8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Heart Rate ",
+        "label": "bpm",
+        "format": "{{msg.payload.heart_rate}}",
+        "min": "60",
+        "max": "300",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "110",
+        "seg2": "150",
+        "x": 1070,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "bfb7b62e.e83ee8",
+        "type": "inject",
+        "z": "87e375c9.041c18",
+        "name": "Insert data",
+        "topic": "",
+        "payload": "[{\"address\":\"Bedok North Drive Block 10D, S465498\",\"responder_personnel\":\"Janice Ow\",\"Mobile\":91784984,\"latitude\":1.21451,\"longitude\":103.53051,\"name\":\"Tan Song Ming\",\"age\":45,\"lock_id\":\"6198ghj\",\"password\":49841,\"device_id\":123456},{\"address\":\"Richfield Technologies 15 Joo Koon Crescent, S629015\",\"responder_personnel\":\"Shawn Yeo\",\"Mobile\":89189191,\"latitude\":1.21369,\"longitude\":103.53134,\"name\":\"Ming Leng\",\"age\":65,\"lock_id\":\"hjdfv11\",\"password\":19918,\"device_id\":123457},{\"address\":\"419 River Valley Road, S248371\",\"responder_personnel\":\"Meng Leng Tan\",\"Mobile\":81651561,\"latitude\":1.21373,\"longitude\":103.52579,\"name\":\"Bryan Lim\",\"age\":84,\"lock_id\":\"dvfd6fv\",\"password\":11998,\"device_id\":123458},{\"address\":\"101 Kitchener Rd #02-14 Jln Besar Plaza, S208511\",\"responder_personnel\":\"Yip Siew Mai\",\"Mobile\":98198191,\"latitude\":1.22018,\"longitude\":103.52116,\"name\":\"Jack Leo\",\"age\":81,\"lock_id\":\"fdv1f88\",\"password\":98191,\"device_id\":123459},{\"address\":\"Blk 246 Hougang Street 22 #01-157, S530246\",\"responder_personnel\":\"Long James\",\"Mobile\":83161981,\"latitude\":1.22501,\"longitude\":103.5016,\"name\":\"Ong Soon Meng\",\"age\":61,\"lock_id\":\"dfv9816\",\"password\":81914,\"device_id\":123460},{\"address\":\"9 Battery Road #09-04 STRAITS TRADING BUILDING, S049910\",\"responder_personnel\":\"Hemes Yeo\",\"Mobile\":86854916,\"latitude\":1.2018,\"longitude\":103.44272,\"name\":\"Brian Ong\",\"age\":50,\"lock_id\":\"dfv7976\",\"password\":51524,\"device_id\":123461},{\"address\":\"108 Hougang Ave 1 #01-1257, S530108\",\"responder_personnel\":\"Brandon Koo\",\"Mobile\":99479847,\"latitude\":1.20282,\"longitude\":103.44218,\"name\":\"Shawn Lin Peng Sai\",\"age\":49,\"lock_id\":\"da2f1f6\",\"password\":19199,\"device_id\":123462},{\"address\":\"18 Boon Lay Way #03-113 TradeHub 21 S609966\",\"responder_personnel\":\"Maven Yik\",\"Mobile\":98494917,\"latitude\":1.25421,\"longitude\":103.50104,\"name\":\"Merlin Lim\",\"age\":90,\"lock_id\":\"sr1v188\",\"password\":32191,\"device_id\":123463},{\"address\":\"Blk 110,10-286 Bedok Reservoir Rd, S470110\",\"responder_personnel\":\"Jasesh Meen\",\"Mobile\":87471711,\"latitude\":1.22088,\"longitude\":103.56574,\"name\":\"Janice Siow\",\"age\":42,\"lock_id\":\"edcx188\",\"password\":19178,\"device_id\":123464},{\"address\":\"10 Haig Road #01-363\\/365, S430010\",\"responder_personnel\":\"Praveen Yikerash\",\"Mobile\":91321899,\"latitude\":1.22264,\"longitude\":103.57015,\"name\":\"Eng Beng Leong\",\"age\":55,\"lock_id\":\"wece159\",\"password\":61981,\"device_id\":123465}]",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 180,
+        "y": 560,
+        "wires": [
+            [
+                "fe3ef115.678f3"
+            ]
+        ]
+    },
+    {
+        "id": "fe3ef115.678f3",
+        "type": "split",
+        "z": "87e375c9.041c18",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 430,
+        "y": 560,
+        "wires": [
+            [
+                "6e46203b.31b4",
+                "8d371599.efad98"
+            ]
+        ]
+    },
+    {
+        "id": "6e46203b.31b4",
+        "type": "debug",
+        "z": "87e375c9.041c18",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 850,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "2e8009bb.26a656",
+        "type": "comment",
+        "z": "87e375c9.041c18",
+        "name": "Insert data for users database",
+        "info": "",
+        "x": 160,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "7a53b6f2.df8bf8",
+        "type": "comment",
+        "z": "87e375c9.041c18",
+        "name": "Retrieve data from users database",
+        "info": "",
+        "x": 180,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "fa953781.e0ba08",
+        "type": "comment",
+        "z": "87e375c9.041c18",
+        "name": "Main Solution",
+        "info": "",
+        "x": 130,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "8d371599.efad98",
+        "type": "cloudant out",
+        "z": "87e375c9.041c18",
+        "name": "users",
+        "cloudant": "e1e4f51b.dca6a8",
+        "database": "users",
+        "service": "_ext_",
+        "payonly": true,
+        "operation": "insert",
+        "x": 850,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "773f0252.3b61ec",
+        "type": "ibmiot",
+        "z": "",
+        "name": "apikeynixon",
+        "keepalive": "60",
+        "serverName": "",
+        "cleansession": true,
+        "appId": "",
+        "shared": false
+    },
+    {
+        "id": "e1e4f51b.dca6a8",
+        "type": "cloudant",
+        "z": "",
+        "host": "https://d4feb888-e2b9-445f-9403-7882c44dadfd-bluemix.cloudantnosqldb.appdomain.cloud",
+        "name": "StarTech_Cloudant"
+    },
+    {
+        "id": "556a0173.bfa9e",
+        "type": "ui_group",
+        "z": "",
+        "name": "Emergencies",
+        "tab": "de38331c.c7877",
+        "order": 1,
+        "disp": true,
+        "width": 21,
+        "collapse": false
+    },
+    {
+        "id": "12734b7c.b61a95",
+        "type": "ui_group",
+        "z": "",
+        "name": "Group 4",
+        "tab": "de38331c.c7877",
+        "order": 4,
+        "disp": false,
+        "width": 6,
+        "collapse": false
+    },
+    {
+        "id": "dd19457a.884358",
+        "type": "ui_group",
+        "z": "",
+        "name": "Group 3",
+        "tab": "de38331c.c7877",
+        "order": 3,
+        "disp": false,
+        "width": 7,
+        "collapse": false
+    },
+    {
+        "id": "991c2ba3.8002e8",
+        "type": "ui_group",
+        "z": "",
+        "name": "Tan Song Ming's Status",
+        "tab": "de38331c.c7877",
+        "order": 2,
+        "disp": true,
+        "width": "7",
+        "collapse": false
+    },
+    {
+        "id": "de38331c.c7877",
+        "type": "ui_tab",
+        "z": "",
+        "name": "SCDF Dashboard",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
